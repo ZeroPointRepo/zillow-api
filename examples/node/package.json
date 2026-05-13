@@ -1,0 +1,16 @@
+{
+  "name": "zillow-api-node-examples",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Zillow API examples in Node.js using native fetch.",
+  "license": "MIT-0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "quickstart": "node 01_quickstart.mjs",
+    "lookup": "node 02_lookup_by_address.mjs",
+    "search": "node 03_search_listings.mjs"
+  }
+}
