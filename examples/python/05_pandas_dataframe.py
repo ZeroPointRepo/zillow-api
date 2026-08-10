@@ -19,7 +19,7 @@ import pandas as pd
 
 KEY = os.environ["ZILLAPI_KEY"]
 ADDRESSES = [
-    "17 Zelma Dr, Greenville, SC 29617",
+    "233 S Wacker Dr, Chicago, IL 60606",
     "350 5th Ave, New York, NY 10118",
     "1600 Pennsylvania Ave NW, Washington DC 20500",
     "1 Infinite Loop, Cupertino, CA 95014",

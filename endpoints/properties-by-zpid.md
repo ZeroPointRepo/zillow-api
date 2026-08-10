@@ -9,7 +9,7 @@ Prefer this endpoint when you already have a zpid (from a previous `/by-address`
 ## Quick example
 
 ```bash
-curl -s "https://api.zillapi.com/v1/properties/11026031" \
+curl -s "https://api.zillapi.com/v1/properties/1234567" \
   -H "Authorization: Bearer $ZILLAPI_KEY" \
   | jq '{cached, fetched_at, zpid: .data.zpid, zestimate: .data.zestimate}'
 ```
