@@ -9,7 +9,7 @@ The Zestimate is also present as a top-level field on every Property response, s
 ## Quick example
 
 ```bash
-curl -s "https://api.zillapi.com/v1/properties/11026031/zestimate" \
+curl -s "https://api.zillapi.com/v1/properties/1234567/zestimate" \
   -H "Authorization: Bearer $ZILLAPI_KEY" \
   | jq .data
 ```

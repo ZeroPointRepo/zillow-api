@@ -14,7 +14,7 @@ import sys
 import httpx
 
 KEY = os.environ["ZILLAPI_KEY"]
-TARGET_ADDRESS = "17 Zelma Dr, Greenville, SC 29617"
+TARGET_ADDRESS = "350 5th Ave, New York, NY 10118"
 N_COMPS = 4
 
 FIELDS = ",".join([
@@ -93,11 +93,11 @@ if __name__ == "__main__":
 ## Example output
 
 ```
-# Comparison — 17 Zelma Dr, Greenville, SC
+# Comparison: 350 5th Ave, New York, NY
 
 | Address | Price | Zestimate | Beds | Baths | Sqft | $/sqft | Built |
 |---|---|---|---|---|---|---|---|
-| 17 Zelma Dr, Greenville, SC | $295,000 | $305,100 | 3 | 2 | 1,432 | $213 | 1965 |
+| 350 5th Ave, New York, NY | example values | example values | 0 | 0 | 0 | 0 | 0 |
 | 22 Maplewood Dr, Greenville, SC | $310,000 | $318,400 | 3 | 2 | 1,508 | $211 | 1962 |
 | 14 Beechwood Ave, Greenville, SC | $279,500 | $284,900 | 3 | 1.5 | 1,289 | $221 | 1958 |
 | 31 Park Ave, Greenville, SC | $325,000 | $329,800 | 4 | 2 | 1,612 | $205 | 1970 |

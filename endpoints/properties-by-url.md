@@ -8,7 +8,7 @@ Look up a property when you already have a Zillow.com link. Accepts any `homedet
 
 ```bash
 curl -s "https://api.zillapi.com/v1/properties/by-url" \
-  -G --data-urlencode "url=https://www.zillow.com/homedetails/17-Zelma-Dr-Greenville-SC-29617/11026031_zpid/" \
+  -G --data-urlencode "url=https://www.zillow.com/homedetails/350-5th-Ave-New-York-NY-10118/1234567_zpid/" \
   -H "Authorization: Bearer $ZILLAPI_KEY" \
   | jq '.data | {zpid, zestimate, bedrooms, bathrooms}'
 ```

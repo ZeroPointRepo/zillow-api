@@ -18,7 +18,7 @@ import os
 import httpx
 
 KEY = os.environ["ZILLAPI_KEY"]
-ADDRESS = "17 Zelma Dr, Greenville, SC 29617"
+ADDRESS = "350 5th Ave, New York, NY 10118"
 
 with httpx.Client(
     base_url="https://api.zillapi.com",
