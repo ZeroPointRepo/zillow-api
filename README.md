@@ -1,3 +1,5 @@
+![Zillapi — Zillow REST API](assets/zillapi-rest-api.jpg)
+
 # Zillow API — REST endpoints, code examples, free tier (2026)
 
 **[Get a free API key →](https://zillapi.com/signup)** — 100 credits at signup, no card required.
@@ -310,3 +312,7 @@ Not affiliated with, endorsed by, or sponsored by Zillow Group, Inc. "Zillow" an
 ## License
 
 [MIT No Attribution](LICENSE). Fork, ship, sublicense — no attribution required.
+
+---
+
+[![Get started with Zillapi — 100 free credits](assets/zillapi-cta.jpg)](https://zillapi.com/signup)
