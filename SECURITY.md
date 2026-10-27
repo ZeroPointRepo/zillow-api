@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Email **nikhil@landkit.pro** with the subject line `SECURITY: zillow-api`. Please do not open public GitHub issues for security reports.
+Email **hello@zillapi.com** with the subject line `SECURITY: zillow-api`. Please do not open public GitHub issues for security reports.
 
 We will acknowledge receipt within 72 hours and aim to publish a fix or mitigation within 14 days for confirmed issues.
 
