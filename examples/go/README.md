@@ -7,7 +7,7 @@ One runnable file using `net/http` from the standard library. No third-party dep
 Go 1.22 or later required.
 
 ```bash
-export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup
+export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 ```
 
 ## Run

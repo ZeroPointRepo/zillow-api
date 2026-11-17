@@ -8,7 +8,7 @@ Ruby 3.0 or later recommended.
 
 ```bash
 bundle install
-export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup
+export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 ```
 
 If you'd rather avoid bundler, install the gem directly:
