@@ -2,7 +2,7 @@
 
 # Zillow API: REST endpoints, code examples, free tier (2026)
 
-**[Get a free API key →](https://zillapi.com/signup)**. 100 credits at signup, no card required.
+**[Get a free API key →](https://zillapi.com/signup/)**. 100 credits at signup, no card required.
 
 Run comps, pull Zestimates, and scan for-sale, sold & rental listings across 160M+ U.S. homes with one REST call: photos, taxes, schools, and full price history included. Free tier, no card. This repo is a resource hub for the modern Zillow API: REST endpoints, working code samples in six languages, and a free tier you can use without a credit card. Zillow's original public API (ZWSID) was retired in September 2021. Bridge Interactive, the official replacement, is limited to MLS-affiliated brokers. For everyone else, independent developers, data analysts, AI agents, and real-estate startups, the practical answer in 2026 is a third-party REST wrapper. This repository documents one of them ([Zillapi](https://zillapi.com)) end-to-end so you can copy 10 lines of code and have property data flowing in under five minutes.
 
@@ -23,7 +23,7 @@ curl -s "https://api.zillapi.com/v1/properties/by-address" \
 
 You get back a wrapped JSON envelope, `{ "data": {...}, "request_id": "..." }`, with 300+ typed fields on the property: Zestimate, beds, baths, square footage, year built, lot size, tax history, school ratings, listing agent, photos, and the `resoFacts` MLS attribute blob.
 
-[Sign up at zillapi.com](https://zillapi.com/signup), grab a key, set `ZILLAPI_KEY`, and the request above runs as-is.
+[Sign up at zillapi.com](https://zillapi.com/signup/), grab a key, set `ZILLAPI_KEY`, and the request above runs as-is.
 
 ---
 
@@ -55,7 +55,7 @@ The Zillow API surface in this repo covers nine functional areas mapped to nine 
 
 Full schema is in the [OpenAPI spec](https://zillapi.com/openapi.json). Stub references are in [`endpoints/`](endpoints/).
 
-**Ready to try?** [Get a free Zillapi API key →](https://zillapi.com/signup) and start with the curl example below.
+**Ready to try?** [Get a free Zillapi API key →](https://zillapi.com/signup/) and start with the curl example below.
 
 ---
 
@@ -190,13 +190,13 @@ The Zillow API tier this repo references has a real free tier, no credit card, n
 
 Free tier: 100 credits at signup, no credit card, 20 requests/minute. One credit equals one property record returned on most endpoints. `/v1/properties/by-address` costs 3 credits per success because the upstream geocode is a separate paid call. Failed responses (4xx, 5xx) do not consume credits and do not count toward the per-minute rate limit.
 
-Full pricing: [zillapi.com/pricing](https://zillapi.com/pricing).
+Full pricing: [zillapi.com/pricing](https://zillapi.com/pricing/).
 
 ---
 
 ## Endpoint reference
 
-Short reference stubs live in [`endpoints/`](endpoints/). Each links to the full spec at [zillapi.com](https://zillapi.com/api/).
+Short reference stubs live in [`endpoints/`](endpoints/). Each links to the full spec at [zillapi.com](https://zillapi.com/api/properties/).
 
 - [`properties-by-address.md`](endpoints/properties-by-address.md), look up a property by free-form U.S. address.
 - [`properties-by-url.md`](endpoints/properties-by-url.md), look up by Zillow URL (`homedetails`, `b`, `community`, `apartments`).
@@ -236,11 +236,11 @@ Officially: Bridge Interactive, Zillow Group's RESO Web API. In practice for mos
 
 ### Is there a free Zillow API?
 
-There is no free official Zillow API. Bridge Interactive is approval-gated and tier-priced. Among third-party wrappers, [Zillapi](https://zillapi.com) offers a one-time grant of 100 free credits at signup with no credit card required, enough to build and test a complete integration. Failed API calls do not consume credits. Full pricing: [zillapi.com/pricing](https://zillapi.com/pricing).
+There is no free official Zillow API. Bridge Interactive is approval-gated and tier-priced. Among third-party wrappers, [Zillapi](https://zillapi.com) offers a one-time grant of 100 free credits at signup with no credit card required, enough to build and test a complete integration. Failed API calls do not consume credits. Full pricing: [zillapi.com/pricing](https://zillapi.com/pricing/).
 
 ### How do I get a Zillow API key?
 
-[Sign up at zillapi.com](https://zillapi.com/signup) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by 43 URL-safe base64 characters. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
+[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by 43 URL-safe base64 characters. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
 
 ### Does Zillow have an official API?
 
@@ -252,7 +252,7 @@ The Zestimate is a Zillow-published valuation that estimates a home's market val
 
 ### How much does the Zillow API cost?
 
-Free tier: $0 with 100 one-time credits and a 20-requests-per-minute rate limit, no credit card required. One credit equals one property record on most endpoints; `/v1/properties/by-address` is 3 credits because of the geocode step. Full pricing: [zillapi.com/pricing](https://zillapi.com/pricing).
+Free tier: $0 with 100 one-time credits and a 20-requests-per-minute rate limit, no credit card required. One credit equals one property record on most endpoints; `/v1/properties/by-address` is 3 credits because of the geocode step. Full pricing: [zillapi.com/pricing](https://zillapi.com/pricing/).
 
 ### Can I scrape Zillow legally?
 
@@ -301,7 +301,20 @@ Real-world walkthroughs in [`recipes/`](recipes/):
 
 ## Get started
 
-**Get started in 60 seconds.** [Sign up free at zillapi.com →](https://zillapi.com/signup), 100 credits at signup, no credit card. Then run any of the examples in this repository with `export ZILLAPI_KEY="zk_..."` and you are calling Zillow data within a minute.
+**Get started in 60 seconds.** [Sign up free at zillapi.com →](https://zillapi.com/signup/), 100 credits at signup, no credit card. Then run any of the examples in this repository with `export ZILLAPI_KEY="zk_..."` and you are calling Zillow data within a minute.
+
+## Related Zillapi projects
+
+- [zillow-api](https://github.com/ZeroPointRepo/zillow-api): REST API docs and examples
+- [zillow-mcp](https://github.com/ZeroPointRepo/zillow-mcp): MCP server for Claude, ChatGPT, Cursor and Claude Code
+- [zillow-skills](https://github.com/ZeroPointRepo/zillow-skills): agent skills (one-command install)
+- [zillow-plugin](https://github.com/ZeroPointRepo/zillow-plugin): plugin for Claude Code and Cursor
+- [n8n-nodes-zillapi](https://github.com/ZeroPointRepo/n8n-nodes-zillapi): n8n community node
+- [crewai-zillapi](https://github.com/zillapi/crewai-zillapi): CrewAI tools
+- Examples: [zillapi-vercel-ai-sdk-example](https://github.com/ZeroPointRepo/zillapi-vercel-ai-sdk-example) (Vercel AI SDK), [zillapi-openai-agents-example](https://github.com/ZeroPointRepo/zillapi-openai-agents-example) (OpenAI Agents SDK)
+- Demos: [property-fair-value](https://github.com/ZeroPointRepo/property-fair-value), [property-scanner](https://github.com/ZeroPointRepo/property-scanner)
+
+Learn more: [Zillow API guide](https://zillapi.com/zillow-api/) · [For AI agents](https://zillapi.com/ai-agents/) · [Pricing](https://zillapi.com/pricing/) · [Zillow API alternatives](https://zillapi.com/alternatives/zillow-api/) · [Zillow's Claude connector vs Zillapi](https://zillapi.com/compare/zillow-claude-connector-vs-zillapi/) · [Zillow API pricing explained](https://zillapi.com/blog/zillow-api-pricing/) · [YouTube](https://www.youtube.com/@zillapi)
 
 ---
 
@@ -315,4 +328,4 @@ Not affiliated with, endorsed by, or sponsored by Zillow Group, Inc. "Zillow" an
 
 ---
 
-[![Get started with Zillapi, 100 free credits](assets/zillapi-cta.jpg)](https://zillapi.com/signup)
+[![Get started with Zillapi, 100 free credits](assets/zillapi-cta.jpg)](https://zillapi.com/signup/)

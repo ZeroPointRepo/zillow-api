@@ -7,7 +7,7 @@ Three ES-module scripts using native `fetch`. Zero dependencies, no build step. 
 Node 18 or later required.
 
 ```bash
-export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup
+export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 ```
 
 ## Scripts

@@ -43,6 +43,6 @@ Failed responses do not consume credits.
 ## See also
 
 - [Full reference — `/properties/by-url`](https://zillapi.com/api/properties/)
-- [Output formats — CSV, NDJSON](https://zillapi.com/blog/zillow-api-formats/)
+- [Output formats — CSV, NDJSON](https://zillapi.com/output-formats/)
 - [`examples/curl/quickstart.sh`](../examples/curl/quickstart.sh)
 - The dedicated [`/buildings/by-url`](https://zillapi.com/api/buildings/) endpoint is the recommended path for building queries because it has stronger schema guarantees on the unit array.

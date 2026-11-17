@@ -7,7 +7,7 @@ One runnable file using PHP's `file_get_contents` with a stream context. No Comp
 PHP 8.0 or later recommended. `allow_url_fopen` must be enabled (the default on most installs).
 
 ```bash
-export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup
+export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 ```
 
 If you'd rather use Guzzle, swap the `file_get_contents` block for `(new Client)->get(...)`. The response shape is identical.

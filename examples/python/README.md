@@ -6,7 +6,7 @@ Five scripts covering single-property lookups, the dedicated Zestimate sub-resou
 
 ```bash
 pip install -r requirements.txt
-export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup
+export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 ```
 
 ## Scripts

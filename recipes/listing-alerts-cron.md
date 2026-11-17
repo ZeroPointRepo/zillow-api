@@ -133,4 +133,4 @@ The receiver pulls results via `GET /v1/jobs/{id}/results` and runs the same del
 
 - [`endpoints/search.md`](../endpoints/search.md) — full search reference (filters, response shape).
 - [`endpoints/webhooks.md`](../endpoints/webhooks.md) — async job notifications.
-- [Search extraction methods](https://zillapi.com/blog/zillow-api-search-extraction-methods/) — pagination vs map markers vs recursive zoom.
+- [Search extraction methods](https://zillapi.com/api/search/) — pagination vs map markers vs recursive zoom.

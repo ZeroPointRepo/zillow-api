@@ -5,7 +5,7 @@ Three shell scripts. No build step. Requires `curl` and `jq` (both standard on m
 ## Setup
 
 ```bash
-export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup
+export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 ```
 
 ## Scripts

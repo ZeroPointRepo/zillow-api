@@ -44,5 +44,5 @@ Failed responses do not consume credits.
 ## See also
 
 - [Full reference — `/properties/{zpid}`](https://zillapi.com/api/properties/)
-- [Cache policy](https://zillapi.com/blog/zillow-api-caching/)
+- [Cache policy](https://zillapi.com/api/properties/)
 - [`examples/python/04_zestimate.py`](../examples/python/04_zestimate.py) — chains a by-address lookup into a zpid-based Zestimate fetch.
