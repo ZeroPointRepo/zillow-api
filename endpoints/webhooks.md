@@ -79,5 +79,5 @@ The delivery payload mirrors the [`Job` schema](https://zillapi.com/openapi.json
 ## See also
 
 - [Full reference — Webhooks](https://zillapi.com/api/webhooks/)
-- [Webhook signature verification guide](https://zillapi.com/blog/zillow-api-webhook-verification/)
+- [Webhook signature verification guide](https://zillapi.com/recipes/verify-webhook/)
 - [`/v1/jobs/{id}`](https://zillapi.com/api/jobs/) — the polling alternative when you don't want to host a receiver.

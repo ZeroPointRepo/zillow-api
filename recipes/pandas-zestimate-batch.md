@@ -147,4 +147,4 @@ The async path costs the same (1 credit per record returned), bypasses the per-m
 - [`examples/python/05_pandas_dataframe.py`](../examples/python/05_pandas_dataframe.py) — the trimmed-down version of the sync loop.
 - [`endpoints/properties-by-address.md`](../endpoints/properties-by-address.md) — full endpoint reference.
 - [`endpoints/webhooks.md`](../endpoints/webhooks.md) — webhook signature verification for the async path.
-- [Output formats — CSV, NDJSON](https://zillapi.com/blog/zillow-api-formats/)
+- [Output formats — CSV, NDJSON](https://zillapi.com/output-formats/)

@@ -96,7 +96,7 @@ curl -s "https://api.zillapi.com/v1/search" \
 ## See also
 
 - [Full reference — Search](https://zillapi.com/api/search/)
-- [extractionMethod modes — pagination, map markers, recursive zoom](https://zillapi.com/blog/zillow-api-search-extraction-methods/)
+- [extractionMethod modes — pagination, map markers, recursive zoom](https://zillapi.com/api/search/)
 - [`examples/curl/search_listings.sh`](../examples/curl/search_listings.sh)
 - [`examples/python/03_search_listings.py`](../examples/python/03_search_listings.py)
 - [`recipes/listing-alerts-cron.md`](../recipes/listing-alerts-cron.md) — polling pattern for new-listing alerts.
