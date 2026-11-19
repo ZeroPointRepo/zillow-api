@@ -33,7 +33,7 @@ with httpx.Client(
     lookup.raise_for_status()
     zpid = lookup.json()["data"]["zpid"]
 
-    # Step 2: hit the dedicated Zestimate endpoint (1 credit, cache-friendly).
+    # Step 2: hit the dedicated Zestimate endpoint (1 credit).
     zest = client.get(f"/v1/properties/{zpid}/zestimate")
     zest.raise_for_status()
 

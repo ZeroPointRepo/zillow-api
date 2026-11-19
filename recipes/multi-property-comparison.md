@@ -133,7 +133,7 @@ Apply that filter before printing the table, and you get tighter comparables at 
 | Each comparable's detail | `/v1/properties/{zpid}` | 1 per comp |
 | **Total for 4 comps** | | **8 credits** |
 
-If you already know the target zpid (skip the geocode), it drops to 6 credits. Cache hits on the detail endpoint are free, so re-running the same comparison within the cache window costs only 1 credit (the `/nearby` call, which is not cached at the same tier).
+If you already know the target zpid (skip the geocode), it drops to 6 credits.
 
 ## See also
 

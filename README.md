@@ -240,7 +240,7 @@ There is no free official Zillow API. Bridge Interactive is approval-gated and t
 
 ### How do I get a Zillow API key?
 
-[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by 43 URL-safe base64 characters. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
+[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by a 43-character body, 46 characters in total. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
 
 ### Does Zillow have an official API?
 

@@ -25,8 +25,8 @@ curl -s "https://api.zillapi.com/v1/properties/1234567" \
 
 Envelope: `{ "data": Property, "cached": boolean, "fetched_at": ISO-8601, "request_id": "..." }`.
 
-- `cached: true` — the response was served from the cache layer. No upstream hit, no credit charged.
-- `cached: false` — fresh upstream fetch. 1 credit charged on success.
+- `cached: true` — the response was served from the cache layer. No upstream hit.
+- `cached: false` — fresh upstream fetch.
 - `fetched_at` — timestamp of when the cached record was originally collected, regardless of whether this specific request hit the cache.
 
 Property schema is identical to the [by-address response](properties-by-address.md). Full field-level docs at [zillapi.com](https://zillapi.com/api/properties/).
@@ -37,7 +37,7 @@ Property schema is identical to the [by-address response](properties-by-address.
 
 ## Credit cost
 
-**1 credit per fresh upstream fetch.** Cache hits are free.
+**1 credit per successful call.**
 
 Failed responses do not consume credits.
 

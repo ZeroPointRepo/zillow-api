@@ -52,7 +52,7 @@ Envelope: `{ "data": {...}, "request_id": "..." }`.
 
 ## Credit cost
 
-**1 credit per successful call.** Cache hits are free.
+**1 credit per successful call.**
 
 Failed responses do not consume credits.
 
