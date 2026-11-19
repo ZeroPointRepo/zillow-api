@@ -33,7 +33,7 @@ There is no public, self-serve Zillow API today for property-level data. Zillow 
 
 The official replacement is [Bridge Interactive](https://bridgedataoutput.com/), but Bridge is positioned at the brokerage tier. You need MLS affiliation, a signed data-licensing agreement with each MLS, and approval from Zillow Group's data team. That works for brokerages and MLS-tier vendors. It does not work for an indie developer wiring property data into a side project, a real-estate analytics startup pulling Zestimates into a model, or an AI agent that needs to answer "what's this house worth" inside a chat session.
 
-The gap that opened in 2021 is what third-party REST wrappers fill. They normalize requests against Zillow's own data layer, cache responses, expose a clean OpenAPI surface, and meter usage in credits instead of broker contracts. The Zillow API ecosystem in 2026 is essentially this category: a handful of independent services offering the same shape of contract, a bearer token, a JSON response, per-credit pricing, that the original ZWSID program offered fifteen years ago.
+The gap that opened in 2021 is what third-party REST wrappers fill. They normalize requests against Zillow's own data layer, expose a clean OpenAPI surface, and meter usage in credits instead of broker contracts. The Zillow API ecosystem in 2026 is essentially this category: a handful of independent services offering the same shape of contract, a bearer token, a JSON response, per-credit pricing, that the original ZWSID program offered fifteen years ago.
 
 This repository focuses on [Zillapi](https://zillapi.com) because it is the only one with a free tier you can use without a credit card (100 credits at signup), a hosted MCP server for AI agents, and an open-source agent-skill SDK. The principles below, endpoint shape, response envelope, credit accounting, apply to any modern Zillow API wrapper.
 
@@ -45,7 +45,7 @@ The Zillow API surface in this repo covers nine functional areas mapped to nine 
 
 - **Look up a property by address**, `/v1/properties/by-address`. Free-form U.S. address; we geocode and resolve a zpid upstream.
 - **Look up a property by Zillow URL**, `/v1/properties/by-url`. Paste any `homedetails`, `b`, `community`, or `apartments` URL.
-- **Look up a property by zpid**, `/v1/properties/{zpid}`. Cache-served when fresh.
+- **Look up a property by zpid**, `/v1/properties/{zpid}`.
 - **Get the Zestimate**, `/v1/properties/{zpid}/zestimate`. Returns the Zestimate, rent Zestimate, tax-assessed value, and last-sold price as a four-field response.
 - **Search for-sale or for-rent listings**, `/v1/listings` (GET, bbox-based) or `/v1/search` (POST, structured filters). Up to ~820 results per call with `PAGINATION`, more with `PAGINATION_WITH_ZOOM_IN`.
 - **Pull price + ownership history**, `/v1/properties/{zpid}/price-history` and `/v1/properties/{zpid}/tax-history`.
@@ -200,7 +200,7 @@ Short reference stubs live in [`endpoints/`](endpoints/). Each links to the full
 
 - [`properties-by-address.md`](endpoints/properties-by-address.md), look up a property by free-form U.S. address.
 - [`properties-by-url.md`](endpoints/properties-by-url.md), look up by Zillow URL (`homedetails`, `b`, `community`, `apartments`).
-- [`properties-by-zpid.md`](endpoints/properties-by-zpid.md), zpid-based lookup with cache awareness.
+- [`properties-by-zpid.md`](endpoints/properties-by-zpid.md), zpid-based lookup.
 - [`zestimate.md`](endpoints/zestimate.md), dedicated Zestimate sub-resource.
 - [`search.md`](endpoints/search.md), structured search with filters or pre-built `searchQueryState` URLs.
 - [`webhooks.md`](endpoints/webhooks.md), signed webhooks for async job completion.

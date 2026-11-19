@@ -2,16 +2,16 @@
 
 `GET /v1/properties/{zpid}`
 
-The cheapest, fastest way to fetch a property record — pass the Zillow `zpid` directly. The response is cache-served when fresh, and the envelope includes a `cached` boolean and `fetched_at` timestamp so you can tell whether the upstream was hit.
+The cheapest, fastest way to fetch a property record — pass the Zillow `zpid` directly.
 
-Prefer this endpoint when you already have a zpid (from a previous `/by-address` call, a search result, or your own database). It avoids the 3-credit geocode hop and supports cache-friendly polling for properties you're tracking over time.
+Prefer this endpoint when you already have a zpid (from a previous `/by-address` call, a search result, or your own database). It avoids the 3-credit geocode hop.
 
 ## Quick example
 
 ```bash
 curl -s "https://api.zillapi.com/v1/properties/1234567" \
   -H "Authorization: Bearer $ZILLAPI_KEY" \
-  | jq '{cached, fetched_at, zpid: .data.zpid, zestimate: .data.zestimate}'
+  | jq '{fetched_at, zpid: .data.zpid, zestimate: .data.zestimate}'
 ```
 
 ## Parameters
@@ -23,11 +23,9 @@ curl -s "https://api.zillapi.com/v1/properties/1234567" \
 
 ## Response
 
-Envelope: `{ "data": Property, "cached": boolean, "fetched_at": ISO-8601, "request_id": "..." }`.
+Envelope: `{ "data": Property, "fetched_at": ISO-8601, "request_id": "..." }`.
 
-- `cached: true` — the response was served from the cache layer. No upstream hit.
-- `cached: false` — fresh upstream fetch.
-- `fetched_at` — timestamp of when the cached record was originally collected, regardless of whether this specific request hit the cache.
+- `fetched_at` — timestamp of when the record was originally collected.
 
 Property schema is identical to the [by-address response](properties-by-address.md). Full field-level docs at [zillapi.com](https://zillapi.com/api/properties/).
 
@@ -44,5 +42,4 @@ Failed responses do not consume credits.
 ## See also
 
 - [Full reference — `/properties/{zpid}`](https://zillapi.com/api/properties/)
-- [Cache policy](https://zillapi.com/api/properties/)
 - [`examples/python/04_zestimate.py`](../examples/python/04_zestimate.py) — chains a by-address lookup into a zpid-based Zestimate fetch.

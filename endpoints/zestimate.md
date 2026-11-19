@@ -4,7 +4,7 @@
 
 Returns just the valuation fields — Zestimate, rent Zestimate, tax-assessed value, last-sold price — without the rest of the 200-field property record. Use this when you only need a valuation and want to avoid downloading the full record.
 
-The Zestimate is also present as a top-level field on every Property response, so you don't strictly need this endpoint to read a Zestimate. The reasons to call the sub-resource directly are: smaller response payload, lower egress, and a dedicated cache key so it can be refreshed independently of the full record.
+The Zestimate is also present as a top-level field on every Property response, so you don't strictly need this endpoint to read a Zestimate. The reasons to call the sub-resource directly are: smaller response payload and lower egress.
 
 ## Quick example
 

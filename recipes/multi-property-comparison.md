@@ -137,6 +137,6 @@ If you already know the target zpid (skip the geocode), it drops to 6 credits.
 
 ## See also
 
-- [`endpoints/properties-by-zpid.md`](../endpoints/properties-by-zpid.md) — cache-aware detail lookups.
+- [`endpoints/properties-by-zpid.md`](../endpoints/properties-by-zpid.md) — zpid-based detail lookups.
 - [`endpoints/search.md`](../endpoints/search.md) — when you want comparables defined by your own bbox and filters rather than the upstream's `/nearby` heuristic.
 - [`recipes/pandas-zestimate-batch.md`](pandas-zestimate-batch.md) — for the same workflow at hundreds-of-properties scale.
