@@ -2,7 +2,7 @@
 //
 // The `fields` parameter trims the response server-side. Useful when:
 //   - you're piping the JSON to an LLM (smaller token bill),
-//   - you only need a handful of fields and don't want to deserialize 300+.
+//   - you only need a handful of fields and don't want to deserialize 200+.
 //
 // Run:
 //   export ZILLAPI_KEY="zk_..."

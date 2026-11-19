@@ -133,10 +133,10 @@ Apply that filter before printing the table, and you get tighter comparables at 
 | Each comparable's detail | `/v1/properties/{zpid}` | 1 per comp |
 | **Total for 4 comps** | | **8 credits** |
 
-If you already know the target zpid (skip the geocode), it drops to 6 credits. Cache hits on the detail endpoint are free, so re-running the same comparison within the cache window costs only 1 credit (the `/nearby` call, which is not cached at the same tier).
+If you already know the target zpid (skip the geocode), it drops to 6 credits.
 
 ## See also
 
-- [`endpoints/properties-by-zpid.md`](../endpoints/properties-by-zpid.md) — cache-aware detail lookups.
+- [`endpoints/properties-by-zpid.md`](../endpoints/properties-by-zpid.md) — zpid-based detail lookups.
 - [`endpoints/search.md`](../endpoints/search.md) — when you want comparables defined by your own bbox and filters rather than the upstream's `/nearby` heuristic.
 - [`recipes/pandas-zestimate-batch.md`](pandas-zestimate-batch.md) — for the same workflow at hundreds-of-properties scale.

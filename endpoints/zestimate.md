@@ -2,9 +2,9 @@
 
 `GET /v1/properties/{zpid}/zestimate`
 
-Returns just the valuation fields — Zestimate, rent Zestimate, tax-assessed value, last-sold price — without the rest of the 300-field property record. Use this when you only need a valuation and want to avoid downloading the full record.
+Returns just the valuation fields — Zestimate, rent Zestimate, tax-assessed value, last-sold price — without the rest of the 200-field property record. Use this when you only need a valuation and want to avoid downloading the full record.
 
-The Zestimate is also present as a top-level field on every Property response, so you don't strictly need this endpoint to read a Zestimate. The reasons to call the sub-resource directly are: smaller response payload, lower egress, and a dedicated cache key so it can be refreshed independently of the full record.
+The Zestimate is also present as a top-level field on every Property response, so you don't strictly need this endpoint to read a Zestimate. The reasons to call the sub-resource directly are: smaller response payload and lower egress.
 
 ## Quick example
 
@@ -52,7 +52,7 @@ Envelope: `{ "data": {...}, "request_id": "..." }`.
 
 ## Credit cost
 
-**1 credit per successful call.** Cache hits are free.
+**1 credit per successful call.**
 
 Failed responses do not consume credits.
 

@@ -21,7 +21,7 @@ curl -s "https://api.zillapi.com/v1/properties/by-address" \
   | jq '.data | {zpid, address, zestimate, bedrooms, bathrooms, livingArea}'
 ```
 
-You get back a wrapped JSON envelope, `{ "data": {...}, "request_id": "..." }`, with 300+ typed fields on the property: Zestimate, beds, baths, square footage, year built, lot size, tax history, school ratings, listing agent, photos, and the `resoFacts` MLS attribute blob.
+You get back a wrapped JSON envelope, `{ "data": {...}, "request_id": "..." }`, with 200+ typed fields on the property: Zestimate, beds, baths, square footage, year built, lot size, tax history, school ratings, listing agent, photos, and the `resoFacts` MLS attribute blob.
 
 [Sign up at zillapi.com](https://zillapi.com/signup/), grab a key, set `ZILLAPI_KEY`, and the request above runs as-is.
 
@@ -33,7 +33,7 @@ There is no public, self-serve Zillow API today for property-level data. Zillow 
 
 The official replacement is [Bridge Interactive](https://bridgedataoutput.com/), but Bridge is positioned at the brokerage tier. You need MLS affiliation, a signed data-licensing agreement with each MLS, and approval from Zillow Group's data team. That works for brokerages and MLS-tier vendors. It does not work for an indie developer wiring property data into a side project, a real-estate analytics startup pulling Zestimates into a model, or an AI agent that needs to answer "what's this house worth" inside a chat session.
 
-The gap that opened in 2021 is what third-party REST wrappers fill. They normalize requests against Zillow's own data layer, cache responses, expose a clean OpenAPI surface, and meter usage in credits instead of broker contracts. The Zillow API ecosystem in 2026 is essentially this category: a handful of independent services offering the same shape of contract, a bearer token, a JSON response, per-credit pricing, that the original ZWSID program offered fifteen years ago.
+The gap that opened in 2021 is what third-party REST wrappers fill. They normalize requests against Zillow's own data layer, expose a clean OpenAPI surface, and meter usage in credits instead of broker contracts. The Zillow API ecosystem in 2026 is essentially this category: a handful of independent services offering the same shape of contract, a bearer token, a JSON response, per-credit pricing, that the original ZWSID program offered fifteen years ago.
 
 This repository focuses on [Zillapi](https://zillapi.com) because it is the only one with a free tier you can use without a credit card (100 credits at signup), a hosted MCP server for AI agents, and an open-source agent-skill SDK. The principles below, endpoint shape, response envelope, credit accounting, apply to any modern Zillow API wrapper.
 
@@ -45,7 +45,7 @@ The Zillow API surface in this repo covers nine functional areas mapped to nine 
 
 - **Look up a property by address**, `/v1/properties/by-address`. Free-form U.S. address; we geocode and resolve a zpid upstream.
 - **Look up a property by Zillow URL**, `/v1/properties/by-url`. Paste any `homedetails`, `b`, `community`, or `apartments` URL.
-- **Look up a property by zpid**, `/v1/properties/{zpid}`. Cache-served when fresh.
+- **Look up a property by zpid**, `/v1/properties/{zpid}`.
 - **Get the Zestimate**, `/v1/properties/{zpid}/zestimate`. Returns the Zestimate, rent Zestimate, tax-assessed value, and last-sold price as a four-field response.
 - **Search for-sale or for-rent listings**, `/v1/listings` (GET, bbox-based) or `/v1/search` (POST, structured filters). Up to ~820 results per call with `PAGINATION`, more with `PAGINATION_WITH_ZOOM_IN`.
 - **Pull price + ownership history**, `/v1/properties/{zpid}/price-history` and `/v1/properties/{zpid}/tax-history`.
@@ -200,7 +200,7 @@ Short reference stubs live in [`endpoints/`](endpoints/). Each links to the full
 
 - [`properties-by-address.md`](endpoints/properties-by-address.md), look up a property by free-form U.S. address.
 - [`properties-by-url.md`](endpoints/properties-by-url.md), look up by Zillow URL (`homedetails`, `b`, `community`, `apartments`).
-- [`properties-by-zpid.md`](endpoints/properties-by-zpid.md), zpid-based lookup with cache awareness.
+- [`properties-by-zpid.md`](endpoints/properties-by-zpid.md), zpid-based lookup.
 - [`zestimate.md`](endpoints/zestimate.md), dedicated Zestimate sub-resource.
 - [`search.md`](endpoints/search.md), structured search with filters or pre-built `searchQueryState` URLs.
 - [`webhooks.md`](endpoints/webhooks.md), signed webhooks for async job completion.
@@ -240,7 +240,7 @@ There is no free official Zillow API. Bridge Interactive is approval-gated and t
 
 ### How do I get a Zillow API key?
 
-[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by 43 URL-safe base64 characters. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
+[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by a 43-character body, 46 characters in total. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
 
 ### Does Zillow have an official API?
 
@@ -248,7 +248,7 @@ Yes, but it is enterprise/MLS-only. Bridge Interactive is the official RESO Web 
 
 ### What is the Zestimate API?
 
-The Zestimate is a Zillow-published valuation that estimates a home's market value using a proprietary model. In this Zillow API, the Zestimate is returned as a top-level number field (`zestimate`) on every property lookup, with a parallel `rentZestimate` for rental valuation. There is also a dedicated `/v1/properties/{zpid}/zestimate` sub-resource that returns a slim four-field response, Zestimate, rent Zestimate, tax-assessed value, last-sold price, for callers who want only the valuation and not the full 300-field record.
+The Zestimate is a Zillow-published valuation that estimates a home's market value using a proprietary model. In this Zillow API, the Zestimate is returned as a top-level number field (`zestimate`) on every property lookup, with a parallel `rentZestimate` for rental valuation. There is also a dedicated `/v1/properties/{zpid}/zestimate` sub-resource that returns a slim four-field response, Zestimate, rent Zestimate, tax-assessed value, last-sold price, for callers who want only the valuation and not the full 200-field record.
 
 ### How much does the Zillow API cost?
 
@@ -264,7 +264,7 @@ In this Zillow API tier: Free plans get 20 requests per minute, Monthly plans ge
 
 ### Does the Zillow API return photos?
 
-Yes. Every property response includes a `responsivePhotos` array with multi-resolution image URLs, and there is a dedicated `/v1/properties/{zpid}/photos` sub-resource that returns just the gallery, useful when you only want the images and not the rest of the 300-field record. The photos sub-resource returns each image at multiple widths (192px through 1536px) in both JPEG and WebP, so you can pick the smallest size that fits your UI.
+Yes. Every property response includes a `responsivePhotos` array with multi-resolution image URLs, and there is a dedicated `/v1/properties/{zpid}/photos` sub-resource that returns just the gallery, useful when you only want the images and not the rest of the 200-field record. The photos sub-resource returns each image at multiple widths (192px through 1536px) in both JPEG and WebP, so you can pick the smallest size that fits your UI.
 
 ### Can I use the Zillow API with Python?
 
