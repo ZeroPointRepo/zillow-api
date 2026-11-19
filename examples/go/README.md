@@ -16,7 +16,7 @@ export ZILLAPI_KEY="zk_..."   # get one at https://zillapi.com/signup/
 go run lookup_property.go
 ```
 
-The struct-based unmarshal in `lookup_property.go` only decodes the fields it prints. If you need the full 300+ field record, change the inner struct to `map[string]any` or generate Go types from the [OpenAPI spec](https://zillapi.com/openapi.json) with a tool like `oapi-codegen`.
+The struct-based unmarshal in `lookup_property.go` only decodes the fields it prints. If you need the full 200+ field record, change the inner struct to `map[string]any` or generate Go types from the [OpenAPI spec](https://zillapi.com/openapi.json) with a tool like `oapi-codegen`.
 
 ## Endpoint
 

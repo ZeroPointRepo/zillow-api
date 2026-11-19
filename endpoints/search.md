@@ -83,7 +83,7 @@ curl -s "https://api.zillapi.com/v1/search" \
 }
 ```
 
-**Search rows have a different shape than property-detail records.** Use `beds` / `baths` (not `bedrooms` / `bathrooms`), `address` as a string (not object), `unformattedPrice` for the integer, `latLong` for coords. To enrich a row with the full 300-field record, hit `GET /v1/properties/{zpid}` per zpid — or use `POST /v1/search/with-details` to run search and detail in one chained async job.
+**Search rows have a different shape than property-detail records.** Use `beds` / `baths` (not `bedrooms` / `bathrooms`), `address` as a string (not object), `unformattedPrice` for the integer, `latLong` for coords. To enrich a row with the full 200-field record, hit `GET /v1/properties/{zpid}` per zpid — or use `POST /v1/search/with-details` to run search and detail in one chained async job.
 
 ## Errors
 

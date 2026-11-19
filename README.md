@@ -21,7 +21,7 @@ curl -s "https://api.zillapi.com/v1/properties/by-address" \
   | jq '.data | {zpid, address, zestimate, bedrooms, bathrooms, livingArea}'
 ```
 
-You get back a wrapped JSON envelope, `{ "data": {...}, "request_id": "..." }`, with 300+ typed fields on the property: Zestimate, beds, baths, square footage, year built, lot size, tax history, school ratings, listing agent, photos, and the `resoFacts` MLS attribute blob.
+You get back a wrapped JSON envelope, `{ "data": {...}, "request_id": "..." }`, with 200+ typed fields on the property: Zestimate, beds, baths, square footage, year built, lot size, tax history, school ratings, listing agent, photos, and the `resoFacts` MLS attribute blob.
 
 [Sign up at zillapi.com](https://zillapi.com/signup/), grab a key, set `ZILLAPI_KEY`, and the request above runs as-is.
 
@@ -248,7 +248,7 @@ Yes, but it is enterprise/MLS-only. Bridge Interactive is the official RESO Web 
 
 ### What is the Zestimate API?
 
-The Zestimate is a Zillow-published valuation that estimates a home's market value using a proprietary model. In this Zillow API, the Zestimate is returned as a top-level number field (`zestimate`) on every property lookup, with a parallel `rentZestimate` for rental valuation. There is also a dedicated `/v1/properties/{zpid}/zestimate` sub-resource that returns a slim four-field response, Zestimate, rent Zestimate, tax-assessed value, last-sold price, for callers who want only the valuation and not the full 300-field record.
+The Zestimate is a Zillow-published valuation that estimates a home's market value using a proprietary model. In this Zillow API, the Zestimate is returned as a top-level number field (`zestimate`) on every property lookup, with a parallel `rentZestimate` for rental valuation. There is also a dedicated `/v1/properties/{zpid}/zestimate` sub-resource that returns a slim four-field response, Zestimate, rent Zestimate, tax-assessed value, last-sold price, for callers who want only the valuation and not the full 200-field record.
 
 ### How much does the Zillow API cost?
 
@@ -264,7 +264,7 @@ In this Zillow API tier: Free plans get 20 requests per minute, Monthly plans ge
 
 ### Does the Zillow API return photos?
 
-Yes. Every property response includes a `responsivePhotos` array with multi-resolution image URLs, and there is a dedicated `/v1/properties/{zpid}/photos` sub-resource that returns just the gallery, useful when you only want the images and not the rest of the 300-field record. The photos sub-resource returns each image at multiple widths (192px through 1536px) in both JPEG and WebP, so you can pick the smallest size that fits your UI.
+Yes. Every property response includes a `responsivePhotos` array with multi-resolution image URLs, and there is a dedicated `/v1/properties/{zpid}/photos` sub-resource that returns just the gallery, useful when you only want the images and not the rest of the 200-field record. The photos sub-resource returns each image at multiple widths (192px through 1536px) in both JPEG and WebP, so you can pick the smallest size that fits your UI.
 
 ### Can I use the Zillow API with Python?
 

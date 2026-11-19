@@ -11,7 +11,7 @@ set -euo pipefail
 ADDRESS="${1:-350 5th Ave, New York, NY 10118}"
 
 # `fields` is a comma-separated dotted-path projection. Server trims the response
-# before sending. Use this when you don't need the full 300+ field record.
+# before sending. Use this when you don't need the full 200+ field record.
 FIELDS="zpid,address,price,zestimate,rentZestimate,bedrooms,bathrooms,livingArea,yearBuilt,homeType,homeStatus,taxAssessedValue"
 
 curl -sS "https://api.zillapi.com/v1/properties/by-address" \

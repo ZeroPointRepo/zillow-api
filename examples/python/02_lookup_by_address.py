@@ -4,7 +4,7 @@ The `fields` parameter is a comma-separated dotted-path projection. The server
 trims the response before sending, which is useful when:
 
 - you're piping the JSON to an LLM (smaller token bill),
-- you only need a handful of fields and don't want to deserialize 300+.
+- you only need a handful of fields and don't want to deserialize 200+.
 
 Run:
     export ZILLAPI_KEY="zk_..."

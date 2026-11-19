@@ -2,7 +2,7 @@
 
 `/v1/properties/{zpid}/zestimate` returns only the valuation fields — Zestimate,
 rent Zestimate, tax-assessed value, last-sold price — without the rest of the
-300-field property record. Useful when you want valuations only.
+200-field property record. Useful when you want valuations only.
 
 Note: the sub-resource uses snake_case (`rent_zestimate`, `tax_assessed_value`,
 `last_sold_price`), while the top-level property record uses camelCase
