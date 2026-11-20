@@ -34,7 +34,7 @@ async def fetch(client, sem, address):
         return row
 
 async def main():
-    sem = asyncio.Semaphore(5)  # 5 concurrent; safe for the free 20/min limit
+    sem = asyncio.Semaphore(5)  # On the free 20/min tier use 1; Monthly (200/min) can use 5.
     async with httpx.AsyncClient(
         base_url="https://api.zillapi.com",
         headers={"Authorization": f"Bearer {KEY}"},
@@ -49,7 +49,7 @@ async def main():
 asyncio.run(main())
 ```
 
-That hits `/v1/properties/by-address` once per row with `fields=zpid,address,price,zestimate,...`, which keeps the response payload small. The semaphore (`asyncio.Semaphore(5)`) caps in-flight requests at 5 — under the free-tier 20/min limit and well under the monthly-tier 200/min ceiling, so you can run this without throttling.
+That hits `/v1/properties/by-address` once per row with `fields=zpid,address,price,zestimate,...`, which keeps the response payload small. The semaphore (`asyncio.Semaphore(5)`) caps in-flight requests at 5. A live lookup usually takes several seconds (median 5-9 s), so 5 in flight is roughly 30-60 requests a minute. On the free 20/min tier use 1; Monthly (200/min) can use 5. There is no per-key concurrency limit, only the per-minute one.
 
 **Cost:** 3 credits per success (the by-address geocode is a paid step). 100 addresses ≈ 300 credits — within the free tier if you only do it once or twice.
 
@@ -79,7 +79,7 @@ df[cols].to_csv("zestimates_slim.csv", index=False)
 
 ## When to switch to the async batch endpoint
 
-For batches above ~200 addresses the sync-loop pattern becomes slow and burns through your per-minute rate limit. The `POST /v1/properties/batch` endpoint exists for exactly this case — submit up to 500 addresses (or Zillow URLs) in one request, receive a `job_id`, and pull the full result set when the job completes.
+For batches above ~200 addresses the sync-loop pattern becomes slow and burns through your per-minute rate limit. The `POST /v1/properties/batch` endpoint exists for exactly this case — submit up to 500 addresses (or Zillow URLs) in one request, receive a `job_id`, and pull the full result set when the job completes. A 500-address job usually finishes in about 4-5 minutes.
 
 ```python
 import time
@@ -132,7 +132,7 @@ df = pd.json_normalize(rows)
 df.to_parquet("zestimates.parquet")
 ```
 
-The async path costs the same (1 credit per record returned), bypasses the per-minute rate limit, and is faster end-to-end for large batches because the upstream parallelizes the property lookups server-side. Production callers should register a [webhook](../endpoints/webhooks.md) instead of polling — the `job.succeeded` event fires within seconds of completion.
+One batch call submits up to 500 addresses or Zillow URLs, so you are not sending 500 separate requests against your per-minute limit. A 500-address job usually finishes in about 4-5 minutes and is billed 1 credit per record returned. Production callers should register a [webhook](../endpoints/webhooks.md) instead of polling — the `job.succeeded` event fires within seconds of completion.
 
 ## Common pitfalls
 
