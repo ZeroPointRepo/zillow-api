@@ -36,7 +36,7 @@ FIELDS = ",".join([
 with httpx.Client(
     base_url="https://api.zillapi.com",
     headers={"Authorization": f"Bearer {KEY}"},
-    timeout=30,
+    timeout=90,
 ) as client:
     resp = client.get(
         "/v1/properties/by-address",

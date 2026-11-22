@@ -23,7 +23,7 @@ ADDRESS = "350 5th Ave, New York, NY 10118"
 with httpx.Client(
     base_url="https://api.zillapi.com",
     headers={"Authorization": f"Bearer {KEY}"},
-    timeout=30,
+    timeout=90,
 ) as client:
     # Step 1: resolve the address to a zpid (3 credits, fields=zpid keeps it cheap).
     lookup = client.get(

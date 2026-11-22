@@ -43,7 +43,7 @@ Top-level Property fields shown below — full schema in the [OpenAPI spec](http
 
 ## Errors
 
-`400 invalid_address` · `401 invalid_api_key` · `402 out_of_credits` · `404 not_found` · `429 rate_limited` · `502 upstream_error` · `504 upstream_timeout`.
+`400 invalid_address` · `401 invalid_api_key` · `402 out_of_credits` · `404 property_not_found` · `429 rate_limited` · `502 property_lookup_failed` · `504 lookup_timeout`.
 
 Failed responses do not consume credits.
 

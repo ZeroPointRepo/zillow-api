@@ -37,7 +37,7 @@ def fetch_current():
         "https://api.zillapi.com/v1/listings",
         params=FILTERS,
         headers={"Authorization": f"Bearer {KEY}"},
-        timeout=60,
+        timeout=90,
     )
     resp.raise_for_status()
     return resp.json()["data"]
@@ -109,7 +109,7 @@ For more sensitive watchlists, drop to `*/10` (every 10 minutes) — still safe 
 
 ## The webhook variant
 
-If you have an HTTPS receiver, you can flip the pattern: instead of polling, use `POST /v1/search/with-details` to spawn an async job, register a webhook for `job.succeeded`, and react when the delivery arrives. That trades a few minutes of latency for ~0 ongoing polling traffic.
+If you have an HTTPS receiver, you can flip the pattern: instead of polling, use `POST /v1/search/with-details` to spawn an async job, register a webhook for `job.succeeded`, and react when the delivery arrives. You still start, and pay for, each scan; the webhook only replaces polling that job.
 
 ```python
 client.post(
@@ -124,7 +124,7 @@ client.post(
         "propertyStatus": "FOR_SALE",
     },
 )
-# Webhook will POST to your receiver with { job_id, status, ... }
+# Webhook will POST to your receiver with { event, delivered_at, data: { job } }
 ```
 
 The receiver pulls results via `GET /v1/jobs/{id}/results` and runs the same delta-against-seen logic shown above. See [`endpoints/webhooks.md`](../endpoints/webhooks.md) for the signature verification details.

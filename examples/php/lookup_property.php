@@ -24,7 +24,7 @@ $ctx = stream_context_create([
         "method"        => "GET",
         "header"        => "Authorization: Bearer {$key}\r\n"
                          . "Accept: application/json\r\n",
-        "timeout"       => 30,
+        "timeout"       => 90,
         "ignore_errors" => true,
     ],
 ]);

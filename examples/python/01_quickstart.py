@@ -16,7 +16,7 @@ resp = httpx.get(
     "https://api.zillapi.com/v1/properties/by-address",
     params={"address": ADDRESS},
     headers={"Authorization": f"Bearer {KEY}"},
-    timeout=30,
+    timeout=90,
 )
 resp.raise_for_status()
 prop = resp.json()["data"]

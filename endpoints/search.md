@@ -47,8 +47,8 @@ curl -s "https://api.zillapi.com/v1/search" \
 | Filter | GET form | POST form (`filters.*`) | Notes |
 |---|---|---|---|
 | Status | `status=for_sale` | `status: "for_sale"` | `for_sale`, `for_rent`, `sold` |
-| Bounding box | `bbox=west,south,east,north` | `bbox: { west, south, east, north }` | **Required.** A free-text `location` alone is rejected with `400 invalid_filters`. |
-| Location hint | `location=` | `location:` | Optional decorative hint that flows into the `usersSearchTerm` field; does not replace bbox. |
+| Bounding box | `bbox=west,south,east,north` | `bbox: { west, south, east, north }` | **Required** for GET and for POST `filters`. A free-text `location` alone is rejected: `400 missing_input` on GET, `400 invalid_filters` on POST. |
+| Location label | `location=` | `location:` | Optional label only. It does not change the search and does not replace bbox. |
 | Price range | `price_min` / `price_max` | `price: { min, max }` | |
 | Beds / baths | `beds_min`, `beds_max`, `baths_min`, `baths_max` | `beds: { min, max }`, `baths: { min, max }` | |
 | Sqft | `sqft_min`, `sqft_max` | `sqft: { min, max }` | |
@@ -57,7 +57,7 @@ curl -s "https://api.zillapi.com/v1/search" \
 | Days on Zillow | `days_on_zillow=30` | `daysOnZillow: "30"` | `1`, `7`, `14`, `30`, `90`, `6m`, `12m`, `24m`, `36m` |
 | Amenities | n/a | `hasPool`, `hasGarage`, `hasAirConditioning`, `hasBasement`, `isWaterfront` | POST only |
 | Max items | `max_items` (≤50) | `maxItems` | POST goes async above 50. |
-| Output format | `format=json|csv|ndjson` | n/a | GET only. |
+| Output format | `format=json|csv|ndjson` | query string | GET and POST. |
 
 ## Response shape
 
@@ -87,7 +87,7 @@ curl -s "https://api.zillapi.com/v1/search" \
 
 ## Errors
 
-`400 invalid_filters` (missing or malformed bbox) · `400 invalid_search_url` (POST with a `searchUrls[]` that lacks `?searchQueryState=`) · `401 invalid_api_key` · `402 out_of_credits` · `429 rate_limited`.
+`400 missing_input` (GET without `bbox`; POST without `filters` or `searchUrls`) · `400 invalid_bbox` (GET `bbox` that is not four numbers) · `400 invalid_filters` (POST `filters` without a valid `status` and `bbox`; either form with west ≥ east or south ≥ north) · `400 invalid_search_url` (POST with a `searchUrls[]` that lacks `?searchQueryState=`) · `401 invalid_api_key` · `402 out_of_credits` · `429 rate_limited`.
 
 ## Credit cost
 

@@ -30,7 +30,7 @@ rows = []
 with httpx.Client(
     base_url="https://api.zillapi.com",
     headers={"Authorization": f"Bearer {KEY}"},
-    timeout=30,
+    timeout=90,
 ) as client:
     for addr in ADDRESSES:
         resp = client.get(

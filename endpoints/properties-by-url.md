@@ -32,7 +32,7 @@ See the [full Property schema](https://zillapi.com/api/properties/) for field-le
 
 ## Errors
 
-`400 invalid_url` (URL not a Zillow link) · `400 invalid_status` · `400 invalid_extract_units` · `401 invalid_api_key` · `402 out_of_credits` · `404 not_found` (property record missing upstream) · `502 upstream_error` · `504 upstream_timeout`.
+`400 invalid_url` (URL not a Zillow link) · `400 invalid_status` · `400 invalid_extract_units` · `401 invalid_api_key` · `402 out_of_credits` · `404 property_not_found` (property record missing upstream) · `502 property_lookup_failed` · `504 lookup_timeout`.
 
 ## Credit cost
 

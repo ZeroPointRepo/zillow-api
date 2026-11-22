@@ -32,7 +32,7 @@ resp = httpx.get(
         "max_items": 20,
     },
     headers={"Authorization": f"Bearer {KEY}"},
-    timeout=60,
+    timeout=90,
 )
 resp.raise_for_status()
 listings = resp.json()["data"]

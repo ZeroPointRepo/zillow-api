@@ -6,7 +6,7 @@
 
 Run comps, pull Zestimates, and scan for-sale, sold & rental listings across 160M+ U.S. homes with one REST call: photos, taxes, schools, and full price history included. Free tier, no card. This repo is a resource hub for the modern Zillow API: REST endpoints, working code samples in six languages, and a free tier you can use without a credit card. Zillow's original public API (ZWSID) was retired in September 2021. Bridge Interactive, the official replacement, is limited to MLS-affiliated brokers. For everyone else, independent developers, data analysts, AI agents, and real-estate startups, the practical answer in 2026 is a third-party REST wrapper. This repository documents one of them ([Zillapi](https://zillapi.com)) end-to-end so you can copy 10 lines of code and have property data flowing in under five minutes.
 
-This repo is not a maintained SDK. It is a curated set of examples, endpoint stubs, and recipes that match the OpenAPI spec at [zillapi.com/openapi.json](https://zillapi.com/openapi.json). Every snippet is one screen long, uses standard-library tooling where possible, and is verified to run against the live API.
+This repo is not a maintained SDK. It is a curated set of examples, endpoint stubs, and recipes that match the OpenAPI spec at [zillapi.com/openapi.json](https://zillapi.com/openapi.json). Every snippet is one screen long, uses standard-library tooling where possible, and is written against the OpenAPI spec.
 
 ---
 
@@ -41,17 +41,17 @@ This repository focuses on [Zillapi](https://zillapi.com) because it is the only
 
 ## What you can pull
 
-The Zillow API surface in this repo covers nine functional areas mapped to nine REST endpoints. Each is one HTTPS call, returns wrapped JSON, and bills against your credit balance only on success.
+The Zillow API surface in this repo covers nine functional areas. Each is one HTTPS call, returns wrapped JSON, and bills against your credit balance only on success.
 
 - **Look up a property by address**, `/v1/properties/by-address`. Free-form U.S. address; we geocode and resolve a zpid upstream.
 - **Look up a property by Zillow URL**, `/v1/properties/by-url`. Paste any `homedetails`, `b`, `community`, or `apartments` URL.
 - **Look up a property by zpid**, `/v1/properties/{zpid}`.
-- **Get the Zestimate**, `/v1/properties/{zpid}/zestimate`. Returns the Zestimate, rent Zestimate, tax-assessed value, and last-sold price as a four-field response.
+- **Get the Zestimate**, `/v1/properties/{zpid}/zestimate`. Returns the Zestimate, rent Zestimate, tax-assessed value, and last-sold price as a short response (four values plus currency).
 - **Search for-sale or for-rent listings**, `/v1/listings` (GET, bbox-based) or `/v1/search` (POST, structured filters). Up to ~820 results per call with `PAGINATION`, more with `PAGINATION_WITH_ZOOM_IN`.
-- **Pull price + ownership history**, `/v1/properties/{zpid}/price-history` and `/v1/properties/{zpid}/tax-history`.
+- **Pull price + tax history**, `/v1/properties/{zpid}/price-history` and `/v1/properties/{zpid}/tax-history`.
 - **Get school ratings + agent contact**, `/v1/properties/{zpid}/schools` (GreatSchools ratings, distance, level) and `/v1/properties/{zpid}/agent` (agent name, email, phone, broker).
 - **Photos and open houses**, `/v1/properties/{zpid}/photos` (full-resolution + responsive widths) and `/v1/properties/{zpid}/open-houses`.
-- **Async batches + signed webhooks**, `POST /v1/properties/batch` for up to 500 records per job; webhook deliveries are HMAC-signed.
+- **Async batches + signed webhooks**, `POST /v1/properties/batch` for up to 500 addresses or URLs per job; webhook deliveries are HMAC-signed.
 
 Full schema is in the [OpenAPI spec](https://zillapi.com/openapi.json). Stub references are in [`endpoints/`](endpoints/).
 
@@ -74,7 +74,7 @@ curl -s "https://api.zillapi.com/v1/properties/by-address" \
   | jq '.data | {zpid, address, zestimate, bedrooms, bathrooms}'
 ```
 
-Three more shell scripts in [`examples/curl/`](examples/curl/) cover the by-URL lookup and a bbox listing search.
+Three shell scripts in [`examples/curl/`](examples/curl/) cover address lookups and a bbox listing search.
 
 ### Zillow API in Python
 
@@ -88,7 +88,7 @@ resp = httpx.get(
     "https://api.zillapi.com/v1/properties/by-address",
     params={"address": "1600 Pennsylvania Ave NW, Washington DC 20500"},
     headers={"Authorization": f"Bearer {os.environ['ZILLAPI_KEY']}"},
-    timeout=30,
+    timeout=90,
 )
 resp.raise_for_status()
 prop = resp.json()["data"]
@@ -97,7 +97,7 @@ print(f"Beds/baths: {prop['bedrooms']}/{prop['bathrooms']}")
 print(f"Living area: {prop['livingArea']:,} sqft")
 ```
 
-Five Python examples in [`examples/python/`](examples/python/) cover the quickstart, by-address and by-URL lookups, the dedicated Zestimate endpoint, listing search, and a pandas DataFrame export. The pandas example uses `pd.json_normalize()` to flatten the nested response into a flat tabular shape suitable for CSV or Parquet.
+Five Python examples in [`examples/python/`](examples/python/) cover the quickstart, by-address lookups, the dedicated Zestimate endpoint, listing search, and a pandas DataFrame export. The pandas example uses `pd.json_normalize()` to flatten the nested response into a flat tabular shape suitable for CSV or Parquet.
 
 ### Zillow API in JavaScript / Node.js
 
@@ -186,7 +186,7 @@ Full file in [`examples/php/lookup_property.php`](examples/php/lookup_property.p
 
 ## Pricing
 
-The Zillow API tier this repo references has a real free tier, no credit card, no trial expiration.
+The Zillow API tier this repo references has a real free tier, no credit card, free credits valid for 90 days.
 
 Free tier: 100 credits at signup, no credit card, 20 requests/minute. One credit equals one property record returned on most endpoints. `/v1/properties/by-address` costs 3 credits per success because the upstream geocode is a separate paid call. Failed responses (4xx, 5xx) do not consume credits and do not count toward the per-minute rate limit.
 
@@ -240,7 +240,7 @@ There is no free official Zillow API. Bridge Interactive is approval-gated and t
 
 ### How do I get a Zillow API key?
 
-[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, the magic-link flow takes 30 seconds. Create a key in the dashboard; the format is `zk_` followed by a 43-character body, 46 characters in total. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
+[Sign up at zillapi.com](https://zillapi.com/signup/) with an email, then set a password and confirm your email. Create a key in the dashboard; the format is `zk_` followed by a 43-character body, 46 characters in total. The plaintext is shown once and only the SHA-256 hash is stored, so if you lose the key you revoke it and create a new one. The same key authenticates the REST API, the hosted MCP server, and any agent skill using the Zillapi handler.
 
 ### Does Zillow have an official API?
 
@@ -248,7 +248,7 @@ Yes, but it is enterprise/MLS-only. Bridge Interactive is the official RESO Web 
 
 ### What is the Zestimate API?
 
-The Zestimate is a Zillow-published valuation that estimates a home's market value using a proprietary model. In this Zillow API, the Zestimate is returned as a top-level number field (`zestimate`) on every property lookup, with a parallel `rentZestimate` for rental valuation. There is also a dedicated `/v1/properties/{zpid}/zestimate` sub-resource that returns a slim four-field response, Zestimate, rent Zestimate, tax-assessed value, last-sold price, for callers who want only the valuation and not the full 200-field record.
+The Zestimate is a Zillow-published valuation that estimates a home's market value using a proprietary model. In this Zillow API, the Zestimate is returned as a top-level number field (`zestimate`) on every property lookup, with a parallel `rentZestimate` for rental valuation. There is also a dedicated `/v1/properties/{zpid}/zestimate` sub-resource that returns a slim response, Zestimate, rent Zestimate, tax-assessed value, last-sold price, for callers who want only the valuation and not the full 200-field record.
 
 ### How much does the Zillow API cost?
 
@@ -260,7 +260,7 @@ Public-page real-estate data is broadly considered scrapable in U.S. case law (`
 
 ### What is the rate limit on the Zillow API?
 
-In this Zillow API tier: Free plans get 20 requests per minute, Monthly plans get 200/min, Annual plans get 300/min. Failed calls (4xx, 5xx) do not consume credits and do not count toward the per-minute limit, so a tight retry loop on errors will not get you rate-limited. Async batch jobs bypass the per-minute limit entirely, submit up to 500 records per job via `POST /v1/properties/batch` and poll the job status.
+In this Zillow API tier: Free plans get 20 requests per minute, Monthly plans get 200/min, Annual plans get 300/min. Failed calls (4xx, 5xx) do not consume credits and do not count toward the per-minute limit, so a tight retry loop on errors will not get you rate-limited. A batch submit and each status poll count as one request each. Submit up to 500 addresses or URLs per job via `POST /v1/properties/batch` and poll the job status.
 
 ### Does the Zillow API return photos?
 
@@ -268,7 +268,7 @@ Yes. Every property response includes a `responsivePhotos` array with multi-reso
 
 ### Can I use the Zillow API with Python?
 
-Yes, see [`examples/python/`](examples/python/) for five end-to-end Python scripts. The simplest version is three lines of `httpx` plus an `ZILLAPI_KEY` environment variable. The pandas example demonstrates `pd.json_normalize()` to flatten responses into a DataFrame for CSV/Parquet export. The `requests` library works identically if you already have it pinned in your project. Python 3.7+ is supported.
+Yes, see [`examples/python/`](examples/python/) for five end-to-end Python scripts. The simplest version is three lines of `httpx` plus an `ZILLAPI_KEY` environment variable. The pandas example demonstrates `pd.json_normalize()` to flatten responses into a DataFrame for CSV/Parquet export. The `requests` library works identically if you already have it pinned in your project. Python 3.8+ is supported.
 
 ### How accurate is the Zestimate?
 

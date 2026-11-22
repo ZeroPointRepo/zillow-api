@@ -1,3 +1,3 @@
-module github.com/nikhonit/zillow-api/examples/go
+module github.com/ZeroPointRepo/zillow-api/examples/go
 
 go 1.22

@@ -27,7 +27,7 @@ This repository is a resource hub for the modern Zillow API — a curated README
 ## Local development
 
 ```bash
-git clone https://github.com/nikhonit/zillow-api.git
+git clone https://github.com/ZeroPointRepo/zillow-api.git
 cd zillow-api
 export ZILLAPI_KEY="zk_..."
 

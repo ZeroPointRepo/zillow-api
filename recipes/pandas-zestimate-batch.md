@@ -38,7 +38,7 @@ async def main():
     async with httpx.AsyncClient(
         base_url="https://api.zillapi.com",
         headers={"Authorization": f"Bearer {KEY}"},
-        timeout=30,
+        timeout=90,
     ) as client:
         rows = await asyncio.gather(*(fetch(client, sem, a) for a in ADDRESSES))
 
@@ -92,7 +92,7 @@ ADDRESSES = [...]  # up to 500
 with httpx.Client(
     base_url="https://api.zillapi.com",
     headers={"Authorization": f"Bearer {KEY}"},
-    timeout=60,
+    timeout=90,
 ) as client:
     submit = client.post(
         "/v1/properties/batch",
@@ -140,7 +140,7 @@ One batch call submits up to 500 addresses or Zillow URLs, so you are not sendin
 
 **Watch the `address_query` column.** Geocoding occasionally normalizes to the wrong canonical address (a street with multiple suffixes, an apartment number variant). Keep your input string in the DataFrame so you can audit the matches.
 
-**Use `format=ndjson` for very large jobs.** `GET /v1/jobs/{id}/results?format=ndjson` streams the response one record per line, which is friendlier to `pd.read_json(... lines=True)` for million-row exports than holding everything in memory.
+**Use `format=ndjson` for very large jobs.** `GET /v1/jobs/{id}/results?format=ndjson` streams the response one record per line, which is friendlier to `pd.read_json(... lines=True)` for exports that combine many jobs than holding everything in memory.
 
 ## See also
 

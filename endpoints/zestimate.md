@@ -48,7 +48,7 @@ Envelope: `{ "data": {...}, "request_id": "..." }`.
 
 ## Errors
 
-`400 invalid_zpid` · `401 invalid_api_key` · `402 out_of_credits` · `404 not_found` (no zestimate available for this property) · `429 rate_limited`.
+`400 invalid_zpid` · `401 invalid_api_key` · `402 out_of_credits` · `404 property_not_found` (no such property) · `429 rate_limited`.
 
 ## Credit cost
 

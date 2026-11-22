@@ -11,7 +11,7 @@ Prefer this endpoint when you already have a zpid (from a previous `/by-address`
 ```bash
 curl -s "https://api.zillapi.com/v1/properties/1234567" \
   -H "Authorization: Bearer $ZILLAPI_KEY" \
-  | jq '{fetched_at, zpid: .data.zpid, zestimate: .data.zestimate}'
+  | jq '{zpid: .data.zpid, zestimate: .data.zestimate}'
 ```
 
 ## Parameters
@@ -23,15 +23,14 @@ curl -s "https://api.zillapi.com/v1/properties/1234567" \
 
 ## Response
 
-Envelope: `{ "data": Property, "fetched_at": ISO-8601, "request_id": "..." }`.
+Envelope: `{ "data": Property, "request_id": "..." }`.
 
-- `fetched_at` — timestamp of when the record was originally collected.
 
 Property schema is identical to the [by-address response](properties-by-address.md). Full field-level docs at [zillapi.com](https://zillapi.com/api/properties/).
 
 ## Errors
 
-`400 invalid_zpid` · `401 invalid_api_key` · `402 out_of_credits` · `404 not_found` · `429 rate_limited` · `502 upstream_error`.
+`400 invalid_zpid` · `401 invalid_api_key` · `402 out_of_credits` · `404 property_not_found` · `429 rate_limited` · `502 property_lookup_failed` · `504 lookup_timeout`.
 
 ## Credit cost
 

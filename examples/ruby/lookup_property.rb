@@ -18,7 +18,7 @@ resp = HTTParty.get(
   "https://api.zillapi.com/v1/properties/by-address",
   query: { address: ADDRESS },
   headers: { "Authorization" => "Bearer #{KEY}" },
-  timeout: 30
+  timeout: 90
 )
 
 unless resp.success?
