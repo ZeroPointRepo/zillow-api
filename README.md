@@ -47,7 +47,7 @@ The Zillow API surface in this repo covers nine functional areas. Each is one HT
 - **Look up a property by Zillow URL**, `/v1/properties/by-url`. Paste any `homedetails`, `b`, `community`, or `apartments` URL.
 - **Look up a property by zpid**, `/v1/properties/{zpid}`.
 - **Get the Zestimate**, `/v1/properties/{zpid}/zestimate`. Returns the Zestimate, rent Zestimate, tax-assessed value, and last-sold price as a short response (four values plus currency).
-- **Search for-sale or for-rent listings**, `/v1/listings` (GET, bbox-based) or `/v1/search` (POST, structured filters). Up to ~820 results per call with `PAGINATION`, more with `PAGINATION_WITH_ZOOM_IN`.
+- **Search for-sale or for-rent listings**, `/v1/listings` (GET, bbox-based) or `/v1/search` (POST, structured filters). Up to 50 per call by default; see the API reference for larger async jobs.
 - **Pull price + tax history**, `/v1/properties/{zpid}/price-history` and `/v1/properties/{zpid}/tax-history`.
 - **Get school ratings + agent contact**, `/v1/properties/{zpid}/schools` (GreatSchools ratings, distance, level) and `/v1/properties/{zpid}/agent` (agent name, email, phone, broker).
 - **Photos and open houses**, `/v1/properties/{zpid}/photos` (full-resolution + responsive widths) and `/v1/properties/{zpid}/open-houses`.

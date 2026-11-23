@@ -88,13 +88,13 @@ if __name__ == "__main__":
 
 ## Crontab line
 
-Run every 30 minutes from 7 AM to 11 PM. (Adjust to your timezone.) The script costs at most ~50 credits per run (50 listings × 1 credit) — well under the monthly tier even at 32 runs/day.
+Run every 30 minutes from 7 AM to 11 PM. (Adjust to your timezone.) The script costs at most ~50 credits per run (50 listings × 1 credit) — about 51,000 credits a month when every run returns 50 listings (34 runs a day), so narrow the search or run it less often.
 
 ```cron
 */30 7-23 * * *  cd /opt/zillow-alerts && /usr/bin/env ZILLAPI_KEY=zk_... SLACK_WEBHOOK=https://... python3 new_listing_alerts.py >> alerts.log 2>&1
 ```
 
-For more sensitive watchlists, drop to `*/10` (every 10 minutes) — still safe at the free-tier rate limit.
+For more sensitive watchlists, drop to `*/10` (every 10 minutes) — within the free-tier rate limit, but two runs of 50 listings use all 100 free credits.
 
 ## Operational notes
 
