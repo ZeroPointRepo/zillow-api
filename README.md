@@ -1,10 +1,10 @@
-![Zillapi Zillow REST API](assets/zillapi-rest-api.jpg)
+![ZillAPI Zillow REST API](assets/zillapi-rest-api.jpg)
 
-# Zillow API: REST endpoints, code examples, free tier (2026)
+# ZillAPI: Zillow API REST endpoints and code examples (2026)
 
-**[Get a free API key →](https://zillapi.com/signup/)**. 100 credits at signup, no card required.
+**[Get an API key →](https://zillapi.com/signup/)** · [Docs](https://zillapi.com/quickstart/) · [Pricing](https://zillapi.com/pricing/) · Website: [zillapi.com](https://zillapi.com/)
 
-Run comps, pull Zestimates, and scan for-sale, sold & rental listings across 160M+ U.S. homes with one REST call: photos, taxes, schools, and full price history included. Free tier, no card. This repo is a resource hub for the modern Zillow API: REST endpoints, working code samples in six languages, and a free tier you can use without a credit card. Zillow's original public API (ZWSID) was retired in September 2021. Bridge Interactive, the official replacement, is limited to MLS-affiliated brokers. For everyone else, independent developers, data analysts, AI agents, and real-estate startups, the practical answer in 2026 is a third-party REST wrapper. This repository documents one of them ([Zillapi](https://zillapi.com)) end-to-end so you can copy 10 lines of code and have property data flowing in under five minutes.
+Run comps, pull Zestimates, and scan for-sale, sold & rental listings across 160M+ U.S. homes with one REST call: photos, taxes, schools, and full price history included. This repo is the resource hub for [ZillAPI](https://zillapi.com/), a modern Zillow data API: REST endpoints and working code samples in six languages. Zillow's original public API (ZWSID) was retired in September 2021. Bridge Interactive, the official replacement, is limited to MLS-affiliated brokers. For everyone else, independent developers, data analysts, AI agents, and real-estate startups, the practical answer in 2026 is a third-party REST wrapper. This repository documents one of them ([Zillapi](https://zillapi.com)) end-to-end so you can copy 10 lines of code and have property data flowing in under five minutes.
 
 This repo is not a maintained SDK. It is a curated set of examples, endpoint stubs, and recipes that match the OpenAPI spec at [zillapi.com/openapi.json](https://zillapi.com/openapi.json). Every snippet is one screen long, uses standard-library tooling where possible, and is written against the OpenAPI spec.
 
